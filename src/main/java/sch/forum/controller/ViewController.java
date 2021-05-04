@@ -1,18 +1,24 @@
 package sch.forum.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import sch.forum.constant.CommonConstants;
 import sch.forum.domain.UserEntity;
+import sch.forum.service.GameService;
 import sch.forum.util.CommonUtils;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/view")
 public class ViewController {
+    @Autowired
+    private GameService gameService;
+
     @RequestMapping("/index")
     public String userIndex(Model model, HttpServletRequest request) {
+        model.addAttribute("gameList", gameService.getTabGameName());
         return commonView(request, model);
     }
 

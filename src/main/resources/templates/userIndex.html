@@ -5,22 +5,21 @@
     <title>1316游戏社区</title>
     <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
     <script language="javascript" th:src="@{/js/jQuery.js}"></script>
+    <script th:src="@{/layui/layui.all.js}"></script>
+    <script type="text/javascript" th:src="@{/js/userIndex.js}"></script>
 </head>
 
 <body>
 <div id="menu">
     <ul>
-        <li id="index" class=""><a href="#">热门话题</a></li>
-        <li class=""><a href="#">推荐话题</a></li>
-        <li class="on"><a href="#">魔域</a></li>
-        <li class=""><a href="#">地下城与勇士</a></li>
-        <li><a href="#">英雄联盟</a></li>
-        <li><a href="#">绝地求生</a></li>
+        <li class="" th:each="c, State : ${gameList}"><a th:href="@{c.id}" th:text="${c.gameName}"></a></li>
+        <li style="margin-right:10px;float:right;"><a href="../view/logout">退出</a></li>
+        <li style="margin-right:20px;float:right;"><a th:text="${user.userName}"></a></li>
     </ul>
 </div>
 <div id="main">
-    <div id="logo"><img th:src="@{/picture/logo.jpg}" alt="魔域私服_魔域sf发布网 - 每日新开私服魔域发布网"
-                        title="魔域私服_魔域sf发布网 - 每日新开私服魔域发布网网站首页"><font>魔域私服网站</font></div>
+    <div id="logo"><img src="https://www.utgamer.com/wp-content/uploads/2020/07/1594105170-ea490fad5814d85be33be368660ad7aa-1.jpg" alt="魔域私服_魔域sf发布网 - 每日新开私服魔域发布网"
+                        title="魔域私服_魔域sf发布网 - 每日新开私服魔域发布网网站首页"></div>
     <div id="ol"></div>
     <div id="here"><b>当前位置</b><a href="#">魔域</a><a href="#" title="魔域私服">魔域私服</a><font>话题讨论</font>
     </div>

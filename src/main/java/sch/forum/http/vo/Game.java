@@ -67,4 +67,12 @@ public class Game {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public Game(Integer id, String gameName) {
+        this.id = id;
+        this.gameName = gameName;
+    }
+
+    public Game() {
+    }
 }
