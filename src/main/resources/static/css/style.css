@@ -68,7 +68,7 @@ h1,h2,h3,h6{font-size:15px;font-weight:bold}
 #tabulation ul li .t,#tabulation ul li .r{color:red;margin-left:3px}
 #tabulation ul li .r{color:#090}
 
-#totop{position:fixed;bottom:120px;right:80px;_position:absolute;z-index:9;width:30px;height:64px;display:block;cursor:pointer;background:url(../images/top.png) no-repeat;filter:alpha(opacity=80);-moz-opacity:.8;opacity:.8;border-radius:1px}
+#totop{position:fixed;bottom:120px;right:80px;_position:absolute;z-index:9;width:30px;height:64px;display:block;cursor:pointer;background:url(../images/t.png) no-repeat;filter:alpha(opacity=80);-moz-opacity:.8;opacity:.8;border-radius:1px}
 #totop:hover{filter:alpha(opacity=100);-moz-opacity:1;opacity:1}
 #footer{color:#888;margin-top:6px;line-height:26px;padding:12px;text-align:center;background:#313131 url(../images/b.jpg) no-repeat bottom;text-shadow:1px 1px 1px #444;}
 #footer ul{color:#555;overflow:hidden;text-align:center;}

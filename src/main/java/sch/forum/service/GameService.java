@@ -21,8 +21,8 @@ public class GameService {
     public List<Game> getTabGameName() {
         List<GameEntity> gameEntityList = gameRepository.findAllByOrderByGameTypeDesc();
         List<Game> gameList = new ArrayList<>();
-        gameList.add(new Game(null, "热门话题"));
-        gameList.add(new Game(null, "推荐话题"));
+        gameList.add(new Game(9999999, "推荐话题"));
+        gameList.add(new Game(8888888, "最新话题"));
         int count = 0;
         for (GameEntity gameEntity : gameEntityList) {
             if (count >= 4) {

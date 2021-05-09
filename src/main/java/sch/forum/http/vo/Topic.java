@@ -2,6 +2,8 @@ package sch.forum.http.vo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.util.List;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Topic {
     private Integer id;
@@ -13,6 +15,7 @@ public class Topic {
     private String updateTimeStr;
     private String recommendStatusStr;
     private String verifyStatusStr;
+    private List<Comment> commentList;
 
     public Integer getId() {
         return id;
@@ -84,5 +87,13 @@ public class Topic {
 
     public void setVerifyStatusStr(String verifyStatusStr) {
         this.verifyStatusStr = verifyStatusStr;
+    }
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
     }
 }

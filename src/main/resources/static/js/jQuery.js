@@ -1814,12 +1814,4 @@ function DY_scroll(a, b, c, d, e, f) {
             g(c), c++, c == b && (c = 0)
         }, 3e3)
     }).trigger("mouseleave")
-}), $("#totop").live("click", function () {
-    var a = $(this);
-    $("html,body").animate({scrollTop: 0}, 500, function () {
-        a.hide()
-    })
-}), $(window).scroll(function () {
-    var a = $(document).scrollTop();
-    a > 0 ? $("#totop").show() : $("#totop").hide()
-});
+})
