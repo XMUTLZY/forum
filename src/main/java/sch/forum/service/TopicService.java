@@ -65,7 +65,7 @@ public class TopicService {
         if (gameEntityOptional.isPresent()) {
             topic.setGameName(gameEntityOptional.get().getGameName());
         }
-        List<TopicCommentEntity> topicCommentEntityList = topicCommentRepository.findAllByTopicId(topic.getId());
+        List<TopicCommentEntity> topicCommentEntityList = topicCommentRepository.findAllByTopicIdAndStatus(topic.getId(), CommonConstants.STATUS_YES);
         List<Comment> commentList = new ArrayList<>();
         topicCommentEntityList.forEach(topicCommentEntity -> {
             Comment comment = new Comment();
