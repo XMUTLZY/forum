@@ -30,7 +30,7 @@
             <dt><h1 th:text="${topicType}"></h1></dt>
         </dl>
         <ul>
-            <li class="" th:each="c, State : ${topicList}"><a th:onclick="|userIndexJs.method.topicDetail(${c.id})|" th:text="${c.topicName}"></a><font th:text="${c.createTimeStr}"></font></li>
+            <li class="" th:each="c, State : ${topicList}"><a th:href="@{../view/topic/detail(id=${c.id})}" th:text="${c.topicName}"></a><font th:text="${c.createTimeStr}"></font></li>
         </ul>
     </div>
     <div class="c"></div>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>话题详情</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+    <script language="javascript" th:src="@{/js/jQuery.js}"></script>
+    <script th:src="@{/layui/layui.all.js}"></script>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/res/css/global.css}" media="all">
+    <script th:src="@{/layui/layui.js}"></script>
+    <script language="javascript" th:src="@{/js/userIndexJs.js}"></script>
+    <style type="text/css" rel="stylesheet">
+        form {
+            margin: 0;
+        }
+
+        .editor {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="main layui-clear">
+    <div class="wrap">
+        <div class="content detail">
+            <div class="fly-panel detail-box">
+                <h1 th:text="${topic.topicName}"></h1>
+                <div class="fly-tip fly-detail-hint" data-id="">
+                    <span class="fly-tip-stick" th:text="${topic.gameName}"></span><span class="jie-admin">
+						</span>
+                    <div class="fly-list-hint">
+                        <i class="iconfont" title="回答">&#xe60c;</i><label th:text="${topic.commentSize}"></label>
+                    </div>
+                </div>
+                <div class="detail-about">
+                    <a class="jie-user" href=""> <img
+                            th:src="${topic.portrait}" alt="头像"> <cite> <label th:text="${topic.userName}"></label>
+                        <em th:text="${topic.createTimeStr}"></em> </cite> </a>
+                    <div class="detail-hits" data-id="{{rows.id}}">
+							 <span class="layui-btn layui-btn-mini jie-admin"><a
+                                     href="#" th:text="${topic.address}"></a> </span>
+                    </div>
+                </div>
+                <div class="detail-body photos" style="margin-bottom: 20px;">
+                    <p th:text="${topic.description}"></p>
+                </div>
+            </div>
+            <div class="fly-panel detail-box" style="padding-top: 0;">
+                <a name="comment"></a>
+                <ul class="jieda photos" id="jieda">
+                    <li th:each="c, State : ${topic.commentList}" data-id="12" class="jieda-daan">
+                        <a name="item-121212121212"></a>
+                        <div class="detail-about detail-about-reply">
+                            <a class="jie-user" href="">
+                                <img th:src="${c.portrait}" alt="">
+                                <cite> <i th:text="${c.userName}"></i></cite>
+                            </a>
+                            <div class="detail-hits">
+                                <span th:text="${c.createTimeStr}"></span>
+                            </div>
+                        </div>
+                        <div class="detail-body jieda-body">
+                            <p th:text="${c.content}"></p>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="layui-form layui-form-pane">
+                    <div class="layui-form-item layui-form-text">
+                        <div class="layui-input-block">
+                                    <textarea id="comment-content" name="content" placeholder="我要评论"
+                                              class="layui-textarea fly-editor" style="height: 150px;"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <button class="layui-btn" th:onclick="|userIndexJs.method.topicComment(${topic.id})|">提交评论</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script type="text/javascript" charset="utf-8" th:src="@{/res/js/kindeditor.js}"></script>
+<script type="text/javascript">
+    // KE.show({
+    //     id: 'comment-content',
+    //     resizeMode: 1,
+    //     items: [
+    //         'fontname', 'fontsize', 'textcolor', 'bgcolor', 'bold', 'italic', 'underline',
+    //         'removeformat', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+    //         'insertunorderedlist', 'emoticons', 'image', 'link']
+    // });
+</script>
+</body>
+</html>

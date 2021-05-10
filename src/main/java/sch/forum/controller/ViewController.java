@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import sch.forum.constant.CommonConstants;
 import sch.forum.domain.GameEntity;
 import sch.forum.domain.TopicEntity;
@@ -14,6 +16,7 @@ import sch.forum.repository.GameRepository;
 import sch.forum.repository.TopicRepository;
 import sch.forum.repository.UserRepository;
 import sch.forum.service.GameService;
+import sch.forum.service.TopicService;
 import sch.forum.util.CommonUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -32,6 +35,8 @@ public class ViewController {
     private UserRepository userRepository;
     @Autowired
     private GameRepository gameRepository;
+    @Autowired
+    private TopicService topicService;
 
     @RequestMapping("/index")
     public String userIndex(Model model, HttpServletRequest request) {
@@ -130,6 +135,13 @@ public class ViewController {
             model.addAttribute("user", userEntity);
             return "/userIndex";
         }
+    }
+
+    @RequestMapping(value = "/topic/detail", method = RequestMethod.GET)
+    public String topicDetail(Model model, HttpServletRequest request, @RequestParam Integer id) {
+        Topic topic = (Topic) topicService.topicDetail(id).getVo();
+        model.addAttribute("topic", topic);
+        return "/detail";
     }
 
 }

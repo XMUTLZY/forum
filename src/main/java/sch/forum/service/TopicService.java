@@ -3,12 +3,12 @@ package sch.forum.service;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import sch.forum.constant.CommonConstants;
 import sch.forum.domain.GameEntity;
 import sch.forum.domain.TopicCommentEntity;
 import sch.forum.domain.TopicEntity;
 import sch.forum.domain.UserEntity;
-import sch.forum.http.request.TopicRequest;
 import sch.forum.http.response.BaseResponse;
 import sch.forum.http.vo.Comment;
 import sch.forum.http.vo.Topic;
@@ -19,6 +19,7 @@ import sch.forum.repository.UserRepository;
 import sch.forum.util.CommonUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,12 +58,14 @@ public class TopicService {
         Optional<UserEntity> userEntityOptional = userRepository.findById(topicEntity.getUserId());
         if (userEntityOptional.isPresent()) {
             topic.setUserName(userEntityOptional.get().getUserName());
+            topic.setPortrait(userEntityOptional.get().getPortrait());
+            topic.setAddress(userEntityOptional.get().getAddress());
         }
         Optional<GameEntity> gameEntityOptional = gameRepository.findById(topicEntity.getGameId());
         if (gameEntityOptional.isPresent()) {
             topic.setGameName(gameEntityOptional.get().getGameName());
         }
-        List<TopicCommentEntity> topicCommentEntityList = new ArrayList<>();
+        List<TopicCommentEntity> topicCommentEntityList = topicCommentRepository.findAllByTopicId(topic.getId());
         List<Comment> commentList = new ArrayList<>();
         topicCommentEntityList.forEach(topicCommentEntity -> {
             Comment comment = new Comment();
@@ -76,9 +79,12 @@ public class TopicService {
             }
             if (userEntityOptional.isPresent()) {
                 comment.setUserName(userEntityOptional.get().getUserName());
+                comment.setPortrait(userEntityOptional.get().getPortrait());
             }
             commentList.add(comment);
         });
+        topic.setCommentList(commentList);
+        topic.setCommentSize(CollectionUtils.isEmpty(topicCommentEntityList) ? 0 : topicCommentEntityList.size());
         response.setVo(topic);
         return response;
     }

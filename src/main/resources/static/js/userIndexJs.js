@@ -3,7 +3,7 @@ $(function () {
 });
 var userIndexJs = {
     bindEvent: function () {
-        userIndexJs.event.workInfoList('all');
+
     },
     event: {
 
@@ -81,6 +81,32 @@ var userIndexJs = {
                 success: function (result) {
                     if (result.status_code == 200) {
                         layer.msg('成功');
+                    } else {
+                        layer.msg(result.message);
+                    }
+                },
+                error: function () {
+                    layer.msg('数据异常');
+                    layer.closeAll();
+                }
+            })
+        },
+        topicComment: function (topicId) {
+            var data = {};
+            data.topic_id = topicId;
+            data.content = $("#comment-content").val();
+            console.log(data.content);
+            $.ajax({
+                url: '../../user/comment/add',
+                type: 'post',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                success: function (result) {
+                    if (result.status_code == 200) {
+                        layer.msg("评论成功，等待管理员审核");
+                        // setTimeout(function () {
+                        //     location.reload();
+                        // },500)
                     } else {
                         layer.msg(result.message);
                     }

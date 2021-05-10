@@ -16,6 +16,9 @@ public class Topic {
     private String recommendStatusStr;
     private String verifyStatusStr;
     private List<Comment> commentList;
+    private Integer commentSize;
+    private String portrait;
+    private String address;
 
     public Integer getId() {
         return id;
@@ -95,5 +98,29 @@ public class Topic {
 
     public void setCommentList(List<Comment> commentList) {
         this.commentList = commentList;
+    }
+
+    public Integer getCommentSize() {
+        return commentSize;
+    }
+
+    public void setCommentSize(Integer commentSize) {
+        this.commentSize = commentSize;
+    }
+
+    public String getPortrait() {
+        return portrait;
+    }
+
+    public void setPortrait(String portrait) {
+        this.portrait = portrait;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

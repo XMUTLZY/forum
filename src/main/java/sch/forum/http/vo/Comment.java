@@ -12,6 +12,7 @@ public class Comment {
     private String statusStr;
     private String createTimeStr;
     private String updateTimeStr;
+    private String portrait;
 
     public Integer getId() {
         return id;
@@ -75,5 +76,13 @@ public class Comment {
 
     public void setUpdateTimeStr(String updateTimeStr) {
         this.updateTimeStr = updateTimeStr;
+    }
+
+    public String getPortrait() {
+        return portrait;
+    }
+
+    public void setPortrait(String portrait) {
+        this.portrait = portrait;
     }
 }
