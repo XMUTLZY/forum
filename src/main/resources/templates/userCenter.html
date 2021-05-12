@@ -9,6 +9,7 @@
     <link rel="shortcut icon" th:href="@{/layui/images/face/65.gif}"/>
     <script th:src="@{/js/jquery.min.js}"></script>
     <script th:src="@{/layui/laydate/laydate.js}"></script>
+    <script th:src="@{/layui/layui.all.js}"></script>
     <script language="javascript" th:src="@{/js/userIndexJs.js}"></script>
 </head>
 <body style="text-align: center;">
@@ -29,11 +30,10 @@
     </div>
 </div>
 <div class="layui-body">
-    <!-- 游戏列表 -->
-    <div class="layui-hide" style="padding: 15px;" id="game-list">
-        <button class="layui-btn" onclick="adminIndexJs.method.addGameDialog()">新增</button>
-        <table id="game-list-table" lay-filter="game-list-table-fit"></table>
-        <script type="text/html" id="game-list-table-operate">
+    <!-- 话题列表 -->
+    <div class="layui-hide" style="padding: 15px;" id="topic-list">
+        <table id="topic-list-table" lay-filter="topic-list-table-fit"></table>
+        <script type="text/html" id="topic-list-table-operate">
             <a class="layui-btn layui-btn-sm layui-btn-normal" lay-event="edit">编辑</a>
             <a class="layui-btn layui-btn-sm layui-btn-danger" lay-event="delete">硬删除</a>
         </script>
