@@ -144,4 +144,10 @@ public class ViewController {
         return "/detail";
     }
 
+    @RequestMapping(value = "/topic/add", method = RequestMethod.GET)
+    public String topicAdd(Model model) {
+        model.addAttribute("gameList", gameRepository.findAll());
+        return "/add";
+    }
+
 }

@@ -124,7 +124,7 @@ public class UserService {
             topicList.add(topic);
         }
         layerResponse.setData(topicList);
-        layerResponse.setCount((int) topicRepository.count());
+        layerResponse.setCount(topicRepository.countByUserId(userEntity.getId()));
         return layerResponse;
 
     }
@@ -153,6 +153,12 @@ public class UserService {
         commentEntity.setCreateTime(now);
         commentEntity.setUpdateTime(now);
         topicCommentRepository.save(commentEntity);
+        return new BaseResponse();
+    }
+
+    public BaseResponse topicDelete(Integer topicId) {
+        topicRepository.deleteById(topicId);
+        topicCommentRepository.deleteByTopicId(topicId);
         return new BaseResponse();
     }
 }

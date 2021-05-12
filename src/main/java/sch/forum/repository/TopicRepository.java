@@ -12,6 +12,7 @@ import java.util.List;
 @Repository
 public interface TopicRepository extends JpaRepository<TopicEntity, Integer> {
     Page<TopicEntity> findAllByUserId(Pageable pageable, Integer userId);
+    int countByUserId(Integer userId);
 
     List<TopicEntity> findAllByGameIdAndVerifyStatus(Integer gameId, Integer verifyStatus);
     List<TopicEntity> findAllByVerifyStatusAndIsRecommend(Integer verifyStatus, Integer isRecommend);

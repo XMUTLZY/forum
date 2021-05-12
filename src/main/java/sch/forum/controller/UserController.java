@@ -81,6 +81,17 @@ public class UserController {
     }
 
     /**
+     * 删除话题
+     *
+     * @return
+     */
+    @RequestMapping(value = "/topic/delete", method = RequestMethod.GET)
+    @ResponseBody
+    public BaseResponse topicDelete(@RequestParam Integer topicId) {
+        return userService.topicDelete(topicId);
+    }
+
+    /**
      * 用户发表评论
      *
      * @param request

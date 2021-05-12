@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface TopicCommentRepository extends JpaRepository<TopicCommentEntity, Integer> {
     List<TopicCommentEntity> findAllByTopicIdAndStatus(Integer topicId, Integer status);
+    void deleteByTopicId(Integer topicId);
 }
