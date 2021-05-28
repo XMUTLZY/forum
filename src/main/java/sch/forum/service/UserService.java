@@ -161,4 +161,15 @@ public class UserService {
         topicCommentRepository.deleteByTopicId(topicId);
         return new BaseResponse();
     }
+
+    public BaseResponse update(UserRequest userRequest, HttpServletRequest httpServletRequest) {
+        UserEntity userEntity = CommonUtils.getCurrentUserInfo(httpServletRequest);
+        userEntity.setUpdateTime(new Date());
+        userEntity.setDescription(userRequest.getDescription());
+        userEntity.setAddress(userRequest.getAddress());
+        userEntity.setPassword(new Md5Hash(userRequest.getPassword()).toString());
+        userEntity.setUserName(userRequest.getUserName());
+        userRepository.save(userEntity);
+        return new BaseResponse();
+    }
 }

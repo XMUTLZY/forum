@@ -102,4 +102,10 @@ public class UserController {
     public BaseResponse commentAdd(@RequestBody CommentRequest request, HttpServletRequest httpServletRequest) {
         return userService.commentAdd(request, httpServletRequest);
     }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResponse update(@RequestBody UserRequest request, HttpServletRequest httpServletRequest) {
+        return userService.update(request, httpServletRequest);
+    }
 }

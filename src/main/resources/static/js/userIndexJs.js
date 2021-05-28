@@ -169,6 +169,58 @@ var userIndexJs = {
                     }
                 })
             });
+        },
+        userInfoUpdateDialog: function () {
+            layui.use(['layer', 'form'], function (layer, form) {
+                layer.open({
+                    type: 1
+                    , skin: 'examine-refuse-popup'
+                    , offset: 'auto'
+                    , title: '编辑用户信息'
+                    , id: 'layer-id'
+                    , area: ['600px', '500px']
+                    , content: $("#dialog-edit-user")
+                    , btn: ['确定', '取消']
+                    , shade: 0.5 //不显示遮罩
+                    , end: function () {
+                        $("#dialog-edit-user").css("display", "none");
+                    }
+                    , yes: function () {
+                        userIndexJs.method.userInfoUpdate();
+                    },
+                    btn2: function () {
+
+                    }
+                });
+            });
+        },
+        userInfoUpdate: function () {
+            var data = {};
+            data.user_name = $("#edit-user-name").val();
+            data.password = $("#edit-password").val();
+            data.address = $("#edit-address").val();
+            data.description = $("#edit-detail").val();
+            $.ajax({
+                url: '../../user/update',
+                type: 'post',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                success: function (result) {
+                    if (result.status_code == 200) {
+                        layer.closeAll();
+                        layer.msg("修改成功");
+                        // setTimeout(function () {
+                        //     location.reload();
+                        // },500)
+                    } else {
+                        layer.msg(result.message);
+                    }
+                },
+                error: function () {
+                    layer.msg('数据异常');
+                    layer.closeAll();
+                }
+            })
         }
     }
 }
